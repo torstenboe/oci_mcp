@@ -1,17 +1,17 @@
 // Copyright (c) 2017, 2019, Oracle and/or its affiliates. All rights reserved.
 
-resource "oci_core_instance" "DCOSInstance" {
+resource "oci_core_instance" "MCPInstance" {
   count               = "${var.NumInstances}"
   availability_domain = "${data.oci_identity_availability_domain.ad.name}"
   compartment_id      = "${var.compartment_ocid}"
-  display_name        = "DCOSInstance${count.index}"
+  display_name        = "MCPInstance${count.index}"
   shape               = "${var.instance_shape}"
 
   create_vnic_details {
-    subnet_id        = "${oci_core_subnet.MesosSubnet.id}"
+    subnet_id        = "${oci_core_subnet.MirantisSubnet.id}"
     display_name     = "primaryvnic"
     assign_public_ip = true
-    hostname_label   = "Mesosinstance${count.index}"
+    hostname_label   = "Mirantisinstance${count.index}"
   }
 
   source_details {
@@ -33,12 +33,6 @@ resource "oci_core_instance" "DCOSInstance" {
     ssh_authorized_keys = "${var.ssh_public_key}"
     user_data           = "${base64encode(file(var.BootStrapFile))}"
   }
-  defined_tags = "${
-    map(
-      "${oci_identity_tag_namespace.tag-namespace1.name}.${oci_identity_tag.tag2.name}", "awesome-app-server"
-    )
-  }"
-  freeform_tags = "${map("freeformkey${count.index}", "freeformvalue${count.index}")}"
   timeouts {
     create = "60m"
   }
