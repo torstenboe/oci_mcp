@@ -5,7 +5,7 @@ resource "oci_core_volume" "MCPBlock" {
   availability_domain = "${data.oci_identity_availability_domain.ad.name}"
   compartment_id      = "${var.compartment_ocid}"
   display_name        = "MCPBlock${count.index}"
-  size_in_gbs         = "${var.DBSize}"
+  size_in_gbs         = "${var.DiskSize}"
 }
 
 resource "oci_core_volume_attachment" "MCPBlockAttach" {
@@ -29,7 +29,7 @@ resource "oci_core_volume" "MCPBlockParavirtualized" {
   availability_domain = "${data.oci_identity_availability_domain.ad.name}"
   compartment_id      = "${var.compartment_ocid}"
   display_name        = "MCPBlockParavirtualized${count.index}"
-  size_in_gbs         = "${var.DBSize}"
+  size_in_gbs         = "${var.DiskSize}"
 }
 
 resource "oci_core_volume_attachment" "MCPBlockAttachParavirtualized" {

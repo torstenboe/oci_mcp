@@ -43,7 +43,7 @@ variable "instance_image_ocid" {
   }
 }
 
-variable "DBSize" {
+variable "DiskSize" {
   default = "50" // size in GBs
 }
 
