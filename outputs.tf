@@ -9,6 +9,7 @@ output "InstancePublicIPs" {
   value = ["${oci_core_instance.MCPInstance.*.public_ip}"]
 }
 
+/*
 # Output the boot volume IDs of the instance
 output "BootVolumeIDs" {
   value = ["${oci_core_instance.MCPInstance.*.boot_volume_id}"]
@@ -17,6 +18,7 @@ output "BootVolumeIDs" {
 output "InstanceDevices" {
   value = ["${data.oci_core_instance_devices.MCPInstanceDevices.devices}"]
 }
+*/
 
 # Output the chap secret information for ISCSI volume attachments. This can be used to output
 # CHAP information for ISCSI volume attachments that have "use_chap" set to true.
@@ -27,4 +29,3 @@ output "InstanceDevices" {
 #output "IscsiVolumeAttachmentChapSecrets" {
 #  value = ["${oci_core_volume_attachment.MCPBlockAttach.*.chap_secret}"]
 #}
-
